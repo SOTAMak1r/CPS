@@ -47,8 +47,6 @@ class Scene:
         else:
             scene_info = sceneLoadTypeCallbacks["Objaverse"](args.source_path, args.white_background, voxel_size)
         if not self.loaded_iter:
-            # with open(scene_info.ply_path, 'rb') as src_file, open(os.path.join(self.model_path, "input.ply") , 'wb') as dest_file:
-            #     dest_file.write(src_file.read())
             json_cams = []
             camlist = []
             if scene_info.test_cameras:
@@ -77,13 +75,7 @@ class Scene:
             print("[LOAD_FROM_GENERATED]")
             self.gaussians.load_trained_pth(os.path.join(self.model_path, generate_sample))
         elif self.loaded_iter:
-            # self.gaussians.load_ply(os.path.join(self.model_path,
-            #                                                "point_cloud",
-            #                                                "iteration_" + str(self.loaded_iter),
-            #                                                "point_cloud.ply"))
-            (model_params, _) = torch.load(os.path.join(self.model_path,
-                                                    "chkpnt20000.pth")
-                                            )
+            (model_params, _) = torch.load(os.path.join(self.model_path, "chkpnt20000.pth"))
             self.gaussians.restore_from_ckpt(model_params)
         else:
             self.gaussians.create_from_pcd(scene_info.point_cloud, self.cameras_extent)

@@ -31,24 +31,19 @@ def render_set(model_path, name, iteration, views, gaussians, pipeline, backgrou
     print(gaussians._xyz.shape)
     print("[DEBUG] GS MAX OFFSETS:",gaussians._xyz_offsets.max(), gaussians._xyz_offsets.min())
     for idx, view in enumerate(tqdm(views, desc="Rendering progress")):
-        # if idx > 5:
-        #     exit(0)
         rendering = render(view, gaussians, pipeline, background)["render"]
         gt = view.original_image[0:3, :, :]
         torchvision.utils.save_image(rendering, os.path.join(render_path, '{0:05d}'.format(idx) + ".png"))
         # if name == 'train':
         #     torchvision.utils.save_image(gt, os.path.join(gts_path, '{0:05d}'.format(idx) + ".png"))
-    if name == 'train':
+    if name == 'test':
         frames = sorted(os.listdir(render_path))
         imgs = []
-        for frame in frames[:60]:
-            # print(os.path.join(render_path, frame), "RRR")
+        for frame in frames:
             imgs.append(imageio.imread(os.path.join(render_path, frame)))
         output_file = os.path.join(model_path, name, "ours_{}".format(iteration), 'final.gif')
-        # print(output_file, "RRR")
         imageio.mimsave(output_file, imgs, duration=50)
         print(f'[DEBUG] Save gif!')
-    # gaussians.save(iteration)
 
 def render_sets(dataset : ModelParams, iteration : int, pipeline : PipelineParams, skip_train : bool, skip_test : bool, load_generate, sample_name):
     with torch.no_grad():

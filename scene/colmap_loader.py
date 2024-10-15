@@ -256,19 +256,7 @@ def read_extrinsics_text(path):
                     camera_id=camera_id, name=image_name,
                     xys=xys, point3D_ids=point3D_ids)
     return images
-# def read_head_cameras(file):
-#     cameras = {}
-#     elems = line.split()
-#     camera_id = 1 # assume that we use PINHOLE
-#     model = "PINHOLE"
-#     assert model == "PINHOLE", "While the loader support other types, the rest of the code assumes PINHOLE"
-#     width = 512
-#     height = 512
-#     params = np.array(tuple(map(float, elems[4:])))
-#     cameras[camera_id] = Camera(id=camera_id, model=model,
-#                                 width=width, height=height,
-#                                 params=params)
-#     return cameras, 
+    
 
 def read_colmap_bin_array(path):
     """
