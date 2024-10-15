@@ -63,3 +63,21 @@ If you want to render the image, leave the `prepare_data` option out of Step 3.
 python render.py \
     -m output/${obj_id} 
 ```
+
+
+## License
+The majority of this project is licensed under MIT License. Portions of the project are available under separate license of referred projects, detailed in corresponding files.
+
+
+## BibTeX
+```bibtex
+@misc{he2024gvgentextto3dgenerationvolumetric,
+      title={GVGEN: Text-to-3D Generation with Volumetric Representation}, 
+      author={Xianglong He and Junyi Chen and Sida Peng and Di Huang and Yangguang Li and Xiaoshui Huang and Chun Yuan and Wanli Ouyang and Tong He},
+      year={2024},
+      eprint={2403.12957},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2403.12957}, 
+}
+```
